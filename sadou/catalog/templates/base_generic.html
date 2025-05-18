@@ -21,18 +21,22 @@
     <link rel="stylesheet" href="{% static 'dist/styles.css' %}" />
   </head>
   <body>
-    {% comment %} Display {% endcomment %}
     <div class="flex h-dvh w-dvw  overflow-clip">
-      <div class="h-full w-64 p-3 bg-zinc-100/90">
+      <div class="h-full w-64 py-3 bg-zinc-100/90">
         {% block sidebar %}
-        <div class="bg-zinc-800 w-32 aspect-square flex items-end  ">
-          <h3 class="text-xl/5 p-1 w-3 tracking-wider text-justify text-white"> Len's Local Library </h3>
+        <div class="bg-blue-800 w-32 p-3 m-3 aspect-square flex flex-col justify-between">
+          <p class="text-6xl pt-3 w-full text-white text-center">⁂</p>
+          <div class="w-full my-1 bg-white h-[1px]"></div>
+          <h3 class="text-xl/5 p-1 w-3 tracking-wider text-justify font-lexend font-extralight text-white"> Len's Local <span class="font-bold">Library</span> </h3>
         </div>
-        <ul class="py-9 flex flex-col gap-3 text-xl text-blue-600 ">
-          <li class="hover:text-blue-900 transition-all hover:pl-3 hover:tracking-widest duration-300 ease-in-out  "><a href="{% url 'index' %}">Home</a></li>
-          <li class="hover:text-blue-900 transition-all hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><a href="books">Books</a></li>
-          <li class="hover:text-blue-900 transition-all hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><a href="">Authors</a></li>
+        <ul class="py-9 flex flex-col overflow-clip gap-3 text-xl text-zinc-600 ">
+          <a href="{% url 'index' %}" class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-blue-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><p>Home</p> <p class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0  duration-300 delay-75 transition-all ">⌂</p> </a>
+          <a href="books" class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between  transition-all hover:bg-blue-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><p>Books</p> <p class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all ">🕮</p> </a>
+          <a href="" class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-blue-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><p>Authors</p> <p class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all ">❈</p> </a>
         </ul>
+        <p class="absolute bottom-0 text-xs left-0 z-20  text-zinc-600 w-50 p-3 text-left">
+  You have visited this page <span class="bg-blue-800 text-white text-xl px-3 font-semibold p-1">{{ num_visits }}</span>  time{{ num_visits|pluralize }}.
+</p>
         {% endblock %}
       </div>
       <div class="px-12 w-full font-roboto h-full">{% block content %}{% endblock %}</div>

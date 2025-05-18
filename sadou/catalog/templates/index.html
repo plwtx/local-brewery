@@ -13,11 +13,9 @@
   </ul>
 </div>
 <img
-src="{% static '../static/image.jpg' %}"
+src="{% static '../static/image.png' %}"
 alt="Image"
-class="w-full h-full overflow-clip my-3"
+class="w-full  overflow-clip "
 />
-<p class="absolute bottom-0  bg-white z-20 rounded-tl-xl border-t border-l border-zinc-700 text-zinc-600 right-0 w-64 p-3 text-left">
-  You have visited this page <span class="bg-zinc-100 text-black px-3 font-semibold border-zinc-800 border p-1">{{ num_visits }}</span>  time{{ num_visits|pluralize }}.
-</p>
+
 {% endblock %}
