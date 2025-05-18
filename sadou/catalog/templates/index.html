@@ -2,25 +2,22 @@
 <!-- Load static files -->
 
 {% block content %}
-<h1>Local Library Home</h1>
-<p>Welcome to LocalLibrary!</p>
-
-<!-- Add the image here -->
+<div class="my-3 mt-9">
+  <h2 class="text-3xl font-poppins font-semibold">Welcome to Len's Local Library!</h2>
+  <p>The library has the following record counts:</p>
+  <ul class="text-xl">
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Copies:</strong> {{ num_instances }}</li>
+    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  </ul>
+</div>
 <img
-  src="{% static '../static/image.jpg' %}"
-  alt="Image"
-  style="max-width: 300px; height: auto; margin-bottom: 20px"
+src="{% static '../static/image.jpg' %}"
+alt="Image"
+class="w-full h-full overflow-clip my-3"
 />
-
-<h2 class="text-3xl font-semibold tracking-wider">Dynamic content</h2>
-<p>The library has the following record counts:</p>
-<ul>
-  <li><strong>Books:</strong> {{ num_books }}</li>
-  <li><strong>Copies:</strong> {{ num_instances }}</li>
-  <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-  <li><strong>Authors:</strong> {{ num_authors }}</li>
-</ul>
-<p>
-  You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+<p class="absolute bottom-0  bg-white z-20 rounded-tl-xl border-t border-l border-zinc-700 text-zinc-600 right-0 w-64 p-3 text-left">
+  You have visited this page <span class="bg-zinc-100 text-black px-3 font-semibold border-zinc-800 border p-1">{{ num_visits }}</span>  time{{ num_visits|pluralize }}.
 </p>
 {% endblock %}

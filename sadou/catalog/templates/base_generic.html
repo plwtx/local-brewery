@@ -22,20 +22,20 @@
   </head>
   <body>
     {% comment %} Display {% endcomment %}
-    <div class="flex h-dvh w-dvw ">
+    <div class="flex h-dvh w-dvw  overflow-clip">
       <div class="h-full w-64 p-3 bg-zinc-100/90">
         {% block sidebar %}
-        <div class="bg-zinc-800 w-32 aspect-square flex items-end">
+        <div class="bg-zinc-800 w-32 aspect-square flex items-end  ">
           <h3 class="text-xl/5 p-1 w-3 tracking-wider text-justify text-white"> Len's Local Library </h3>
         </div>
         <ul class="py-9 flex flex-col gap-3 text-xl text-blue-600 ">
-          <li class="hover:text-blue-900 transition-all hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><a href="{% url 'index' %}">Home</a></li>
-          <li class="hover:text-blue-900 transition-all hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><a href="#books">Books</a></li>
+          <li class="hover:text-blue-900 transition-all hover:pl-3 hover:tracking-widest duration-300 ease-in-out  "><a href="{% url 'index' %}">Home</a></li>
+          <li class="hover:text-blue-900 transition-all hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><a href="books">Books</a></li>
           <li class="hover:text-blue-900 transition-all hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><a href="">Authors</a></li>
         </ul>
         {% endblock %}
       </div>
-      <div class="px-12">{% block content %}{% endblock %}</div>
+      <div class="px-12 w-full font-roboto h-full">{% block content %}{% endblock %}</div>
     </div>
   </body>
 </html>
