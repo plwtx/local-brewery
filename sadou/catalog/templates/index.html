@@ -3,13 +3,12 @@
 
 {% block content %}
 <div class="my-3 mt-9">
-  <h2 class="text-3xl font-poppins font-semibold">Welcome to Len's Local Library!</h2>
-  <p>The library has the following record counts:</p>
-  <ul class="text-xl">
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  <h2 class="text-3xl font-poppins ">The library has the following record counts:</h2>
+  <ul class="text-sm">
+    <li ><span class="bg-blue-800 text-white px-3">Books:</span> {{ num_books }}</li>
+    <li ><span class="bg-blue-800 text-white px-3">Copies:</span> {{ num_instances }}</li>
+    <li ><span class="bg-blue-800 text-white px-3">Copies available:</span> {{ num_instances_available }}</li>
+    <li ><span class="bg-blue-800 text-white px-3">Authors:</span> {{ num_authors }}</li>
   </ul>
 </div>
 <img

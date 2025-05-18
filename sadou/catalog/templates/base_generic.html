@@ -34,9 +34,13 @@
           <a href="books" class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between  transition-all hover:bg-blue-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><p>Books</p> <p class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all ">🕮</p> </a>
           <a href="" class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-blue-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><p>Authors</p> <p class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all ">❈</p> </a>
         </ul>
-        <p class="absolute bottom-0 text-xs left-0 z-20  text-zinc-600 w-50 p-3 text-left">
+ 
+{% if num_visits >= 0 %}
+       <p class="absolute bottom-0 text-xs left-0 z-20  text-zinc-600 w-50 p-3 text-left">
   You have visited this page <span class="bg-blue-800 text-white text-xl px-3 font-semibold p-1">{{ num_visits }}</span>  time{{ num_visits|pluralize }}.
 </p>
+
+{% endif %}
         {% endblock %}
       </div>
       <div class="px-12 w-full font-roboto h-full">{% block content %}{% endblock %}</div>
