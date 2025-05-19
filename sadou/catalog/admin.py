@@ -1,9 +1,12 @@
 from django.contrib import admin
-from .models import Author, Genre, Book, BookInstance, Language
+from .models import Author, Genre, Book, BookInstance, Language, User
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 # Register simple models
 admin.site.register(Genre)
 admin.site.register(Language)
+admin.site.register(User, UserAdmin)
 
 # Author Admin
 class AuthorAdmin(admin.ModelAdmin):
@@ -30,3 +33,12 @@ class BookAdmin(admin.ModelAdmin):
 class BookInstanceAdmin(admin.ModelAdmin):
     list_display = ('book', 'status', 'due_back')
     list_filter = ('status', 'due_back')
+
+
+# # Create user and save to the database
+# user = User.objects.create_user('myusername', 'myemail@crazymail.com', 'myuserpassword')
+
+# # Update fields and then save again
+# user.first_name = 'John'
+# user.last_name = 'Citizen'
+# user.save()
