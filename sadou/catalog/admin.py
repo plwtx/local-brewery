@@ -1,11 +1,12 @@
 from django.contrib import admin
-from .models import Author, Genre, Book, BookInstance, Language, User
-from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from .models import User, Author, Book, BookInstance, Genre, Language
 
 # Register simple models
 admin.site.register(Genre)
 admin.site.register(Language)
+
+# Register your custom User model with the admin site
 admin.site.register(User, UserAdmin)
 
 # Author Admin

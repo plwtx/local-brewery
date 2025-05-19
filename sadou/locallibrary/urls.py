@@ -28,4 +28,8 @@ urlpatterns = [
     path('catalog/', include('catalog.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', RedirectView.as_view(url='catalog/')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('accounts/', include('django.contrib.auth.urls'))
+] 
+
+# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
+    
