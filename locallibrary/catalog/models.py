@@ -1,8 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.urls import reverse # Used to generate URLs by reversing the URL patterns
+import uuid # Required for unique book instances
+from datetime import date
+from django.contrib.auth.models import AbstractUser
 
-
+class User(AbstractUser):
+    pass
 
 # Create your models here.
 class Language(models.Model):
@@ -21,10 +25,7 @@ class Genre(models.Model):
         """String for representing the Model object."""
         return self.name
 
-from django.urls import reverse # Used to generate URLs by reversing the URL patterns
-import uuid # Required for unique book instances
-from django.contrib.auth.models import User
-from datetime import date
+
 
 class Book(models.Model):
     """Model representing a book (but not a specific copy of a book)."""
@@ -122,5 +123,3 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
-class User(AbstractUser):
-    pass

@@ -25,11 +25,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('catalog/', include('catalog.urls')),
-    path("__reload__/", include("django_browser_reload.urls")),
-    path('', RedirectView.as_view(url='catalog/')),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('', RedirectView.as_view(url='catalog/'))
 ] 
 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
+    
+
     
