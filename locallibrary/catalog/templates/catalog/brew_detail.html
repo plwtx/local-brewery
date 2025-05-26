@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %} {% block content %}
+<h1>Title: {{ brew.title }}</h1>
+<p><strong>Brewer:</strong> <a href="">{{ brew.brewer.all|join:", " }}</a></p>
+<p><strong>Summary:</strong> {{ brew.summary }}</p>
+<p><strong>Brew Code:</strong> {{ brew.code }}</p>
+<p><strong>Language:</strong> {{ brew.language }}</p>
+<p><strong>BrewType:</strong> {{ brew.brewType.all|join:", " }}</p>
+<div style="margin-left: 20px; margin-top: 20px">
+  <h4>Tastings</h4>
+  {% for tasting in brew.brewinstance_set.all %}
+  <hr />
+  <p
+    class="{% if tasting.status == 'a' %}text-success{% elif tasting.status == 'm' %}text-danger{% else %}text-warning{% endif %}"
+  >
+    {{ tasting.get_status_display }}
+  </p>
+  {% if tasting.status != 'a' %}
+  <p><strong>Due to be returned:</strong> {{ tasting.due_back }}</p>
+  {% endif %}
+  <p><strong>Imprint:</strong> {{ tasting.imprint }}</p>
+  <p class="text-muted"><strong>Id:</strong> {{ tasting.id }}</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %} {% block content %}
+<h1>Brew List</h1>
+{% if brew_list %}
+<ul>
+  {% for brew in brew_list %}
+  <li>
+    <a href="{{ brew.get_absolute_url }}">{{ brew.title }}</a> {{
+    brew.brewer.all|join:", " }}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no brews in the brewery.</p>
+{% endif %} {% endblock %}

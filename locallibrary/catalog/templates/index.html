@@ -1,31 +1,33 @@
-{% extends "base_generic.html" %} {% load static %}
-<!-- Load static files -->
-
-{% block content %}
-<div class="my-3 mt-9">
-  <h2 class="text-3xl font-poppins">
-    The Brewery has the following record counts:
+{% extends "base_generic.html" %} {% load static %} {% block content %}
+<div class="brewery-section">
+  <h2 class="text-3xl font-lexend mt-3 font-light">
+    Welcome to Len's Local Brewery !
   </h2>
-  <ul class="text-sm">
+  <ul
+    class="mt-3 pt-3 border-t border-red-800 flex flex-col gap-3 justify-between"
+  >
     <li>
-      <span class="bg-red-800 text-white px-3">Brews:</span> {{num_books}}
+      <span class="bg-red-700 text-zinc-50 px-3 p-1">Brewers:</span>
+      <span class="ml-2 bg-zinc-300 px-3 p-1">{{num_brewers}}</span>
     </li>
     <li>
-      <span class="bg-red-800 text-white px-3">Copies:</span> {{num_instances}}
+      <span class="bg-red-700 text-zinc-50 px-3 p-1">Brews:</span>
+      <span class="ml-2 bg-zinc-300 px-3 p-1">{{num_brews}}</span>
     </li>
     <li>
-      <span class="bg-red-800 text-white px-3">Copies available:</span>
-      {{num_instances_available}}
+      <span class="bg-red-700 text-zinc-50 px-3 p-1">Tastings:</span>
+      <span class="ml-2 bg-zinc-300 px-3 p-1">{{num_instances}}</span>
     </li>
     <li>
-      <span class="bg-red-800 text-white px-3">Brewers:</span> {{num_authors}}
+      <span class="bg-red-700 text-zinc-50 px-3 p-1">Tastings available:</span>
+      <span class="ml-2 bg-zinc-300 px-3 p-1">{{num_instances_available}}</span>
     </li>
   </ul>
 </div>
-<img
-  src="{% static '../static/image.png' %}"
-  alt="Image"
-  class="w-full overflow-clip"
-/>
 
+<img
+  src="{% static 'image.png' %}"
+  alt="Brewery Image"
+  class="w-full overflow-clip mt-8"
+/>
 {% endblock %}
