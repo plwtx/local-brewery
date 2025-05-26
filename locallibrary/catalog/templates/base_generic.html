@@ -1,11 +1,9 @@
-
-
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     {% block title %}
-    <title>Len's Local Library</title>
+    <title>Len's Local Brewery</title>
     {% endblock %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,42 +18,92 @@
     <link rel="stylesheet" href="{% static 'dist/styles.css' %}" />
   </head>
   <body>
-    <div class="flex h-dvh w-dvw  overflow-clip">
+    <div class="flex h-dvh w-dvw overflow-clip">
       <div class="h-full w-64 py-3 bg-zinc-100/90">
         {% block sidebar %}
-        <div class="bg-blue-800 w-32 p-3 m-3 aspect-square flex flex-col justify-between">
+        <div
+          class="bg-red-800 w-32 p-3 m-3 aspect-square flex flex-col justify-between"
+        >
           <p class="text-6xl pt-3 w-full text-white text-center">⁂</p>
           <div class="w-full my-1 bg-white h-[1px]"></div>
-          <h3 class="text-xl/5 p-1 w-3 tracking-wider text-justify font-lexend font-extralight text-white"> Len's Local <span class="font-bold">Library</span> </h3>
+          <h3
+            class="text-xl/5 p-1 w-3 tracking-wider text-justify font-lexend font-extralight text-white"
+          >
+            Len's Local <span class="font-bold">Brewery</span>
+          </h3>
         </div>
-        <ul class="py-9 flex flex-col overflow-clip gap-3 text-xl text-zinc-600 ">
-          <a href="{% url 'index' %}" class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-blue-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><p>Home</p> <p class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0  duration-300 delay-75 transition-all ">⌂</p> </a>
-          <a href="books" class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between  transition-all hover:bg-blue-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><p>Books</p> <p class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all ">🕮</p> </a>
-          <a href="" class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-blue-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"><p>Authors</p> <p class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all ">❈</p> </a>
+        <ul
+          class="py-9 flex flex-col overflow-clip gap-3 text-xl text-zinc-600"
+        >
+          <a
+            href="{% url 'index' %}"
+            class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-red-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"
+            ><p>Home</p>
+            <p
+              class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all"
+            >
+              ⌂
+            </p>
+          </a>
+          <a
+            href="books"
+            class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-red-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"
+            ><p>Brew</p>
+            <p
+              class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all"
+            >
+              🕮
+            </p>
+          </a>
+          <a
+            href=""
+            class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-red-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"
+            ><p>Brewers</p>
+            <p
+              class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all"
+            >
+              ❈
+            </p>
+          </a>
         </ul>
- 
-{% if num_visits >= 0 %}
-       <p class="absolute bottom-0 text-xs left-0 z-20  text-zinc-600 w-50 p-3 text-left">
-  You have visited this page <span class="bg-blue-800 text-white text-xl px-3 font-semibold p-1">{{ num_visits }}</span>  time{{ num_visits|pluralize }}.
-</p>
 
-{% endif %}
-<ul class="">
-           {% if user.is_authenticated %}
-             <li>User: {{ user.get_username }}</li>
-             <li>
-               <form id="logout-form" method="post" action="{% url 'logout' %}">
-                 {% csrf_token %}
-                 <button type="submit" class="text-underline bg-blue-700 text-zinc-100">Logout</button>
-               </form>
-             </li>
-           {% else %}
-             <li class="px-3 text-blue-800 hover:text-underline"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-           {% endif %}
+        {% if num_visits >= 0 %}
+        <p
+          class="absolute bottom-0 text-xs left-0 z-20 text-zinc-600 w-50 p-3 text-left"
+        >
+          You have visited this page
+          <span class="bg-red-800 text-white text-xl px-3 font-semibold p-1"
+            >{{ num_visits }}</span
+          >
+          time{{ num_visits|pluralize }}.
+        </p>
+
+        {% endif %}
+        <ul class="">
+          {% if user.is_authenticated %}
+          <li>User: {{ user.get_username }}</li>
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button
+                type="submit"
+                class="text-underline bg-red-800 text-zinc-100"
+              >
+                Logout
+              </button>
+            </form>
+          </li>
+          {% else %}
+          <li class="px-3 text-red-800 hover:text-underline">
+            <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+          </li>
+          {% endif %}
         </ul>
         {% endblock %}
       </div>
-      <div class="px-12 w-full font-roboto h-full">{% block content %}{% endblock %}</div>
+      <div class="px-12 w-full font-roboto h-full">
+        {% block content %}{% endblock %}
+      </div>
     </div>
   </body>
 </html>

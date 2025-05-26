@@ -3,18 +3,29 @@
 
 {% block content %}
 <div class="my-3 mt-9">
-  <h2 class="text-3xl font-poppins ">The library has the following record counts:</h2>
+  <h2 class="text-3xl font-poppins">
+    The Brewery has the following record counts:
+  </h2>
   <ul class="text-sm">
-    <li ><span class="bg-blue-800 text-white px-3">Books:</span> {{ num_books }}</li>
-    <li ><span class="bg-blue-800 text-white px-3">Copies:</span> {{ num_instances }}</li>
-    <li ><span class="bg-blue-800 text-white px-3">Copies available:</span> {{ num_instances_available }}</li>
-    <li ><span class="bg-blue-800 text-white px-3">Authors:</span> {{ num_authors }}</li>
+    <li>
+      <span class="bg-red-800 text-white px-3">Brews:</span> {{num_books}}
+    </li>
+    <li>
+      <span class="bg-red-800 text-white px-3">Copies:</span> {{num_instances}}
+    </li>
+    <li>
+      <span class="bg-red-800 text-white px-3">Copies available:</span>
+      {{num_instances_available}}
+    </li>
+    <li>
+      <span class="bg-red-800 text-white px-3">Brewers:</span> {{num_authors}}
+    </li>
   </ul>
 </div>
 <img
-src="{% static '../static/image.png' %}"
-alt="Image"
-class="w-full  overflow-clip "
+  src="{% static '../static/image.png' %}"
+  alt="Image"
+  class="w-full overflow-clip"
 />
 
 {% endblock %}
