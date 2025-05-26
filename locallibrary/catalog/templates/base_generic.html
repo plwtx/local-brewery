@@ -51,7 +51,7 @@
             </p>
           </a>
           <a
-            href="books"
+            href="brews"
             class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-red-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"
             ><p>Brew</p>
             <p
@@ -61,7 +61,7 @@
             </p>
           </a>
           <a
-            href=""
+            href="brewers"
             class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-red-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"
             ><p>Brewers</p>
             <p
@@ -77,14 +77,15 @@
           class="absolute bottom-0 text-xs left-0 z-20 text-zinc-600 w-50 p-3 text-left"
         >
           You have visited this page
-          <span class="bg-red-800 text-white text-xl px-3 font-semibold p-1"
+          <br />
+          <span class="bg-red-800 text-white text-base px-6 font-semibold"
             >{{ num_visits }}</span
           >
           time{{ num_visits|pluralize }}.
         </p>
 
         {% endif %}
-        <div class="m-3 bg-zinc-800 h-[1px]"></div>
+        <div class="m-3 bg-gray-800 h-[1px]"></div>
         <ul class="px-3">
           {% if user.is_authenticated %}
           <li

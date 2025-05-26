@@ -1,10 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Brewer, Brew, BrewInstance, BrewType, Language
+from .models import User, Brewer, Brew, BrewInstance, BrewType
 
 # Register simple models
 admin.site.register(BrewType)
-admin.site.register(Language)
 
 # Register your custom User model with the admin site
 admin.site.register(User, UserAdmin)
