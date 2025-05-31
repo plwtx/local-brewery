@@ -38,7 +38,7 @@
         </tr>
       </table>
       <input
-        class="bg-gray-700 text-center w-full mx-auto border border-white text-lg rounded-xl cursor-pointer hover:bg-red-800 duration-300 ease-in-out transition-colors text-white px-5 my-3 p-1"
+        class="bg-red-800 text-center w-full mx-auto border border-white text-lg rounded-xl cursor-pointer hover:bg-gray-800 duration-300 ease-in-out transition-colors text-white px-5 my-3 p-1"
         type="submit"
         value="Login"
       />
@@ -50,6 +50,13 @@
         class="text-red-500 text-underline px-3 mt-9 p-1"
         href="{% url 'password_reset' %}"
         >Lost password ?</a
+      >
+    </p>
+    <p class="mt-4">
+      <a
+        class="text-red-500 text-underline px-3 p-1"
+        href="{% url 'register' %}"
+        >Register here</a
       >
     </p>
   </div>

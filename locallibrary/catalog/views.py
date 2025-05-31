@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
+from django.contrib.auth import login
+from django.urls import reverse_lazy
+from .forms import RegistrationForm
 from .models import Brew, Brewer, BrewInstance, BrewType
 
 def index(request):
@@ -18,6 +21,17 @@ def index(request):
         'num_visits': num_visits,
     }
     return render(request, 'index.html', context=context)
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
 
 class BrewListView(generic.ListView):
     model = Brew
