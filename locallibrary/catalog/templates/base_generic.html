@@ -51,7 +51,7 @@
             </p>
           </a>
           <a
-            href="brews"
+            href="{% url 'brews' %}"
             class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-red-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"
             ><p>Brew</p>
             <p
@@ -60,16 +60,18 @@
               🕮
             </p>
           </a>
+          {% if user.is_authenticated %}
           <a
-            href="brewers"
+            href="{% url 'my-journal' %}"
             class="hover:text-blue-50 p-3 group hover:font-semibold hover:cursor-pointer flex justify-between transition-all hover:bg-red-800 hover:pl-3 hover:tracking-widest duration-300 ease-in-out"
-            ><p>Brewers</p>
+            ><p>My Brew Journal</p>
             <p
               class="opacity-80 group-hover:opacity-100 translate-x-9 group-hover:translate-x-0 duration-300 delay-75 transition-all"
             >
               ❈
             </p>
           </a>
+          {% endif %}
         </ul>
 
         {% if num_visits >= 0 %}
@@ -89,7 +91,7 @@
         <ul class="px-3">
           {% if user.is_authenticated %}
           <li
-            class="text-lg w-full bg-gray-800 text-zinc-50 px-3 font-lexend uppercase"
+            class="text-lg w-full bg-gray-800 text-zinc-50 px-3 font-lexend capitalize"
           >
             {{ user.get_username }}
           </li>

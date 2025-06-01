@@ -142,12 +142,12 @@
 }
 
 .btn-primary {
-  background-color: #4299e1;
+  background-color: #9f0712;
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #3182ce;
+  background-color: #9f0712;
 }
 
 .btn-secondary {
@@ -160,12 +160,12 @@
 }
 
 .btn-danger {
-  background-color: #f56565;
+  background-color: #252525;
   color: white;
 }
 
 .btn-danger:hover {
-  background-color: #e53e3e;
+  background-color: #252525;
 }
 
 /* Pagination */
@@ -175,7 +175,7 @@
 }
 
 .step-links a {
-  color: #4299e1;
+  color: #9f0712;
   text-decoration: none;
   padding: 0.5rem;
 }
