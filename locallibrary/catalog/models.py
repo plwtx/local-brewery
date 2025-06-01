@@ -1,8 +1,5 @@
 from django.db import models
-from django.conf import settings
 from django.urls import reverse # Used to generate URLs by reversing the URL patterns
-import uuid # Required for unique book instances
-from datetime import date
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
@@ -48,33 +45,4 @@ class Brew(models.Model):
     def get_absolute_url(self):
         return reverse('brew-detail', args=[str(self.id)])
 
-class BrewInstance(models.Model):
-    """Model representing a specific tasting of a brew."""
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular brew tasting')
-    brew = models.ForeignKey('Brew', on_delete=models.RESTRICT, null=True)
-    imprint = models.CharField(max_length=200)
-    due_back = models.DateField(null=True, blank=True)
-    taster = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
-    TASTING_STATUS = (
-        ('m', 'Maintenance'),
-        ('o', 'On tasting'),
-        ('a', 'Available'),
-        ('r', 'Reserved'),
-    )
-    status = models.CharField(
-        max_length=1,
-        choices=TASTING_STATUS,
-        blank=True,
-        default='m',
-        help_text='Brew tasting availability',
-    )
-    @property
-    def is_overdue(self):
-        if self.due_back and date.today() > self.due_back:
-            return True
-        return False
-    class Meta:
-        ordering = ['due_back']
-        permissions = (("can_mark_returned", "Set brew as returned"),)
-    def __str__(self):
-        return f'{self.id} ({self.brew.title})'
+

@@ -3,20 +3,16 @@ from django.views import generic
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from .forms import RegistrationForm
-from .models import Brew, Brewer, BrewInstance, BrewType
+from .models import Brew, Brewer, BrewType
 
 def index(request):
     """View function for home page of site."""
     num_brews = Brew.objects.all().count()
-    num_instances = BrewInstance.objects.all().count()
-    num_instances_available = BrewInstance.objects.filter(status__exact='a').count()
     num_brewers = Brewer.objects.count()
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
     context = {
         'num_brews': num_brews,
-        'num_instances': num_instances,
-        'num_instances_available': num_instances_available,
         'num_brewers': num_brewers,
         'num_visits': num_visits,
     }
