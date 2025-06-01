@@ -187,9 +187,8 @@
 
 /* Home Page Styles */
 .home-container {
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
 }
 
 .hero-section {

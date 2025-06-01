@@ -1,7 +1,8 @@
 {% extends "base_generic.html" %} {% load static %} {% block content %}
-<div class="home-container">
-  <div class="hero-section">
-    <h1 class="text-3xl font-lexend mt-3 font-light">
+<div class="home-container w-9/12">
+  <!-- Welcome message -->
+  <div class="hero-section ">
+    <h1 class="text-3xl font-lexend -mt-3 font-light">
       Welcome to Len's Local Brewery!
     </h1>
     <p class="mt-4 text-gray-600">
@@ -10,6 +11,7 @@
     </p>
   </div>
 
+  <!-- Community Statistics -->
   <div class="stats-section mt-8">
     <h2 class="text-xl font-semibold mb-4">Community Statistics</h2>
     <div class="stats-grid">
@@ -23,6 +25,32 @@
       </div>
     </div>
   </div>
+
+  <!-- User CTA -->
+  {% if user.is_authenticated %}
+  <div class="cta-section mt-8 text-center">
+    <h2 class="text-xl font-semibold mb-4">Ready to Share Your Brew?</h2>
+    <a href="{% url 'add-brew' %}" class="btn btn-primary">Add New Brew</a>
+  </div>
+  {% else %}
+  <div class="cta-section mt-8 text-center">
+    <h2 class="text-xl font-semibold mb-4">Join Our Brewing Community</h2>
+    <p class="text-gray-600 mb-4">
+      Log in or register to share your brews and interact with fellow brewers.
+    </p>
+    <div class="flex justify-center gap-4">
+      <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
+      <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Home Page Wallpaper -->
+  <img
+    src="{% static 'image.png' %}"
+    alt="Brewery Image"
+    class="w-full overflow-clip mt-8 rounded-lg shadow-lg"
+  />
 
   <div class="recent-brews mt-8">
     <div class="section-header">
@@ -53,29 +81,8 @@
     </p>
     {% endif %}
   </div>
-
-  {% if user.is_authenticated %}
-  <div class="cta-section mt-8 text-center">
-    <h2 class="text-xl font-semibold mb-4">Ready to Share Your Brew?</h2>
-    <a href="{% url 'add-brew' %}" class="btn btn-primary">Add New Brew</a>
-  </div>
-  {% else %}
-  <div class="cta-section mt-8 text-center">
-    <h2 class="text-xl font-semibold mb-4">Join Our Brewing Community</h2>
-    <p class="text-gray-600 mb-4">
-      Log in or register to share your brews and interact with fellow brewers.
-    </p>
-    <div class="flex justify-center gap-4">
-      <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
-      <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
-    </div>
-  </div>
-  {% endif %}
-
-  <img
-    src="{% static 'image.png' %}"
-    alt="Brewery Image"
-    class="w-full overflow-clip mt-8 rounded-lg shadow-lg"
-  />
 </div>
+</div>
+
 {% endblock %}
+
