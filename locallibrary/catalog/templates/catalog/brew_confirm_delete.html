@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %} {% block content %}
+<div class="delete-confirmation">
+  <h1>Delete Brew</h1>
+
+  <div class="alert alert-warning">
+    <p>Are you sure you want to delete your brew "{{ object.brew_name }}"?</p>
+    <p>This action cannot be undone.</p>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-actions">
+      <button type="submit" class="btn btn-danger">Yes, Delete</button>
+      <a href="{% url 'brew-detail' object.id %}" class="btn btn-secondary"
+        >Cancel</a
+      >
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -134,7 +134,11 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Auth settings
 AUTH_USER_MODEL = 'catalog.User'
 
+# Login/Logout URLs
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

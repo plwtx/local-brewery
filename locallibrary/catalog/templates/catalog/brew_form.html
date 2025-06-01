@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %} {% block content %}
+<div class="brew-form">
+  <h1>{% if form.instance.pk %}Edit{% else %}New{% endif %} Brew</h1>
+
+  <form method="post" class="form">
+    {% csrf_token %} {% if form.non_field_errors %}
+    <div class="alert alert-danger">
+      {% for error in form.non_field_errors %} {{ error }} {% endfor %}
+    </div>
+    {% endif %} {% for field in form %}
+    <div class="form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }} {% if field.help_text %}
+      <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %} {% if field.errors %}
+      <div class="alert alert-danger">
+        {% for error in field.errors %} {{ error }} {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {% if form.instance.pk %}Save Changes{% else %}Add Brew{% endif %}
+      </button>
+      <a href="{% url 'my-journal' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
+
+{% block extra_js %}
+<script>
+  // Dynamic brew method options based on brew type
+  document.addEventListener("DOMContentLoaded", function () {
+    const brewTypeSelect = document.getElementById("id_brew_type");
+    const brewMethodSelect = document.getElementById("id_brew_method");
+    const roastLevelGroup = document
+      .getElementById("id_roast_level")
+      .closest(".form-group");
+
+    const methods = {
+      Coffee: ["French Press", "Espresso", "Pour Over", "Drip", "Cold Brew"],
+      Tea: ["Steeping", "Cold Brew", "Gongfu"],
+      Beer: ["Draft", "Bottle", "Can"],
+    };
+
+    function updateBrewMethods() {
+      const selectedType = brewTypeSelect.value;
+      const availableMethods = methods[selectedType] || [];
+
+      // Clear existing options
+      brewMethodSelect.innerHTML = "";
+
+      // Add new options
+      availableMethods.forEach((method) => {
+        const option = document.createElement("option");
+        option.value = method;
+        option.textContent = method;
+        brewMethodSelect.appendChild(option);
+      });
+
+      // Show/hide roast level based on brew type
+      roastLevelGroup.style.display =
+        selectedType === "Coffee" ? "block" : "none";
+    }
+
+    brewTypeSelect.addEventListener("change", updateBrewMethods);
+    updateBrewMethods(); // Initial setup
+  });
+</script>
+{% endblock %} {% endblock %}

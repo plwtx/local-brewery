@@ -1,0 +1,81 @@
+{% extends "base_generic.html" %} {% load static %} {% block content %}
+<div class="home-container">
+  <div class="hero-section">
+    <h1 class="text-3xl font-lexend mt-3 font-light">
+      Welcome to Len's Local Brewery!
+    </h1>
+    <p class="mt-4 text-gray-600">
+      Share your brewing adventures and discover new recipes from fellow
+      enthusiasts.
+    </p>
+  </div>
+
+  <div class="stats-section mt-8">
+    <h2 class="text-xl font-semibold mb-4">Community Statistics</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Total Brews</span>
+        <span class="stat-value">{{ num_brews }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Active Brewers</span>
+        <span class="stat-value">{{ num_brewers }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="recent-brews mt-8">
+    <div class="section-header">
+      <h2 class="text-xl font-semibold">Recent Brews</h2>
+      <a href="{% url 'brews' %}" class="text-blue-600 hover:text-blue-800"
+        >View All →</a
+      >
+    </div>
+
+    {% if latest_brews %}
+    <div class="brew-grid mt-4">
+      {% for brew in latest_brews %}
+      <div class="brew-card">
+        <h3>
+          <a href="{% url 'brew-detail' brew.id %}">{{ brew.brew_name }}</a>
+        </h3>
+        <p><strong>Type:</strong> {{ brew.brew_type }}</p>
+        <p><strong>Method:</strong> {{ brew.brew_method }}</p>
+        <p><strong>Rating:</strong> {{ brew.rating }}/10</p>
+        <p><strong>By:</strong> {{ brew.user.username }}</p>
+        <p class="post-date">{{ brew.post_date|date:"g:i A / d M / Y" }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-gray-600 mt-4">
+      No brews have been posted yet. Be the first to share your brew!
+    </p>
+    {% endif %}
+  </div>
+
+  {% if user.is_authenticated %}
+  <div class="cta-section mt-8 text-center">
+    <h2 class="text-xl font-semibold mb-4">Ready to Share Your Brew?</h2>
+    <a href="{% url 'add-brew' %}" class="btn btn-primary">Add New Brew</a>
+  </div>
+  {% else %}
+  <div class="cta-section mt-8 text-center">
+    <h2 class="text-xl font-semibold mb-4">Join Our Brewing Community</h2>
+    <p class="text-gray-600 mb-4">
+      Log in or register to share your brews and interact with fellow brewers.
+    </p>
+    <div class="flex justify-center gap-4">
+      <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
+      <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+    </div>
+  </div>
+  {% endif %}
+
+  <img
+    src="{% static 'image.png' %}"
+    alt="Brewery Image"
+    class="w-full overflow-clip mt-8 rounded-lg shadow-lg"
+  />
+</div>
+{% endblock %}

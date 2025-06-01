@@ -1,10 +1,60 @@
 from django.db import models
 from django.urls import reverse # Used to generate URLs by reversing the URL patterns
 from django.contrib.auth.models import AbstractUser
+import uuid
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
 
 class User(AbstractUser):
     pass
 
+class Origin(models.Model):
+    """Model representing a bean/leaf origin."""
+    name = models.CharField(max_length=100, unique=True, help_text='Enter a country of origin (e.g., Turkey, Colombia)')
+    
+    def __str__(self):
+        return self.name
+
+class Seed(models.Model):
+    """Model representing a bean/leaf type."""
+    name = models.CharField(max_length=100, help_text='Enter a bean/leaf name (e.g., Yirgacheffe, Sencha)')
+    origin = models.ForeignKey(Origin, on_delete=models.SET_NULL, null=True)
+    
+    def __str__(self):
+        return self.name
+
+BREW_TYPE_CHOICES = [
+    ('Coffee', 'Coffee'),
+    ('Tea', 'Tea'),
+    ('Beer', 'Beer'),
+]
+
+BREW_METHOD_CHOICES = {
+    'Coffee': [
+        ('French Press', 'French Press'),
+        ('Espresso', 'Espresso'),
+        ('Pour Over', 'Pour Over'),
+        ('Drip', 'Drip'),
+        ('Cold Brew', 'Cold Brew'),
+    ],
+    'Tea': [
+        ('Steeping', 'Steeping'),
+        ('Cold Brew', 'Cold Brew'),
+        ('Gongfu', 'Gongfu'),
+    ],
+    'Beer': [
+        ('Draft', 'Draft'),
+        ('Bottle', 'Bottle'),
+        ('Can', 'Can'),
+    ],
+}
+
+ROAST_LEVEL_CHOICES = [
+    ('Light', 'Light'),
+    ('Medium', 'Medium'),
+    ('Dark', 'Dark'),
+    ('N/A', 'Not Applicable'),
+]
 
 class BrewType(models.Model):
     """Model representing a brew brewType."""
@@ -44,5 +94,46 @@ class Brew(models.Model):
         return self.title
     def get_absolute_url(self):
         return reverse('brew-detail', args=[str(self.id)])
+
+class BrewPost(models.Model):
+    """Model representing a brew post."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    brew_name = models.CharField(max_length=200)
+    brew_type = models.CharField(max_length=10, choices=BREW_TYPE_CHOICES)
+    brew_method = models.CharField(max_length=20)
+    brew_time = models.DurationField(help_text='Duration in minutes and seconds')
+    seed_origin = models.ForeignKey(Origin, on_delete=models.SET_NULL, null=True)
+    seed_name = models.ForeignKey(Seed, on_delete=models.SET_NULL, null=True)
+    roast_level = models.CharField(max_length=10, choices=ROAST_LEVEL_CHOICES, default='N/A')
+    rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(10)],
+        help_text='Rate between 1 and 10'
+    )
+    notes = models.TextField(blank=True)
+    post_date = models.DateTimeField(default=timezone.now)
+    
+    class Meta:
+        ordering = ['-post_date']
+        
+    def get_absolute_url(self):
+        return reverse('brew-detail', args=[str(self.id)])
+        
+    def __str__(self):
+        return f'{self.brew_name} by {self.user.username}'
+        
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        # Validate that the brew method matches the brew type
+        valid_methods = BREW_METHOD_CHOICES.get(self.brew_type, [])
+        if self.brew_method not in [method[0] for method in valid_methods]:
+            raise ValidationError({
+                'brew_method': f'Invalid brew method for {self.brew_type}. Valid methods are: {", ".join([m[0] for m in valid_methods])}'
+            })
+        # Only allow roast level for coffee
+        if self.brew_type != 'Coffee' and self.roast_level != 'N/A':
+            raise ValidationError({
+                'roast_level': 'Roast level is only applicable for Coffee'
+            })
 
 

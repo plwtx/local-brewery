@@ -1,7 +1,38 @@
 {% extends "base_generic.html" %} {% block content %}
-<h1>Title: {{ brew.title }}</h1>
-<p><strong>Brewer:</strong> <a href="">{{ brew.brewer.all|join:", " }}</a></p>
-<p><strong>Summary:</strong> {{ brew.summary }}</p>
-<p><strong>Brew Code:</strong> {{ brew.code }}</p>
-<p><strong>BrewType:</strong> {{ brew.brewType.all|join:", " }}</p>
+<div class="brew-detail">
+  <h1>{{ brew.brew_name }}</h1>
+
+  <div class="brew-info">
+    <div class="brew-metadata">
+      <p><strong>Type:</strong> {{ brew.brew_type }}</p>
+      <p><strong>Method:</strong> {{ brew.brew_method }}</p>
+      <p><strong>Brew Time:</strong> {{ brew.brew_time }}</p>
+      <p><strong>Origin:</strong> {{ brew.seed_origin }}</p>
+      <p><strong>Seed Name:</strong> {{ brew.seed_name }}</p>
+      {% if brew.brew_type == 'Coffee' %}
+      <p><strong>Roast Level:</strong> {{ brew.roast_level }}</p>
+      {% endif %}
+      <p><strong>Rating:</strong> {{ brew.rating }}/10</p>
+    </div>
+
+    <div class="brew-notes">
+      <h3>Notes</h3>
+      <p>{{ brew.notes|linebreaks }}</p>
+    </div>
+
+    <div class="brew-meta">
+      <p><strong>Posted by:</strong> {{ brew.user.username }}</p>
+      <p><strong>Date:</strong> {{ brew.post_date|date:"g:i A / d M / Y" }}</p>
+    </div>
+
+    {% if user == brew.user %}
+    <div class="brew-actions">
+      <a href="{% url 'edit-brew' brew.id %}" class="btn btn-primary">Edit</a>
+      <a href="{% url 'delete-brew' brew.id %}" class="btn btn-danger"
+        >Delete</a
+      >
+    </div>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
