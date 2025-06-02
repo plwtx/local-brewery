@@ -1,6 +1,8 @@
 {% extends "base_generic.html" %} {% block content %}
-<h1>Global Brew History</h1>
-
+<div class="py-3">
+  <h1 class="text-xl font-semibold font-lexend mt-6">Global Brew History</h1>
+  <p class="text-xs text-zinc-400">Share your brew with us today !</p>
+</div>
 {% if brews %}
 <div class="brew-grid">
   {% for brew in brews %}

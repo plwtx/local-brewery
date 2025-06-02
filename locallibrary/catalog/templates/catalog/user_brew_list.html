@@ -1,5 +1,12 @@
 {% extends "base_generic.html" %} {% block content %}
-<h1>My Brew Journal</h1>
+<div class="py-3">
+  <h1 class="text-xl font-semibold font-lexend mt-6">My Brew Journal</h1>
+  <p class="text-xs text-zinc-400">
+    List of brews you shared with world. You can
+    <span class="px-1 underline text-red-600">Edit</span> and
+    <span class="px-1 underline font-semibold text-black">Delete</span> them.
+  </p>
+</div>
 
 <div class="journal-header">
   <a href="{% url 'add-brew' %}" class="btn btn-primary">Add New Brew</a>
