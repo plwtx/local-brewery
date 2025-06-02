@@ -1,21 +1,35 @@
-{% extends "base_generic.html" %} {% block content %} {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+{% extends "base_generic.html" %} {% load static %} {% block content %}
+
+<div class="fixed inset-0 z-0">
+  <img
+    src="{% static 'loginBackground.png' %}"
+    alt="Background"
+    class="w-full z-0 h-full object-cover"
+  />
+</div>
+
+{% if form.errors %}
+<p class="relative z-10 text-white">
+  Your username and password didn't match. Please try again.
+</p>
 {% endif %} {% if next %} {% if user.is_authenticated %}
-<p>
+<p class="relative z-10 text-white">
   Your account doesn't have access to this page. To proceed, please login with
   an account that has access.
 </p>
 {% else %}
-<div class="w-full">
-  <p class="text-xl font-poppins py-3 text-red-800">
+<div class="w-full bg-zinc-800/10 backdrop-blur-sm rounded-b-2xl relative z-10">
+  <p class="text-xs font-lexend p-3 mx-auto text-center text-white">
     Please login to see this page.
   </p>
 </div>
 {% endif %} {% endif %}
 
-<div class="flex flex-col h-dvh w-full justify-center items-center">
+<div
+  class="flex flex-col h-dvh w-full justify-center items-center relative z-10"
+>
   <div
-    class="border flex flex-col justify-center items-center border-zinc-50 shadow-xl rounded-2xl p-6"
+    class="border flex flex-col justify-center items-center border-zinc-50/30 text-white shadow-xl rounded-2xl p-6 bg-gray-900/20 backdrop-blur-md"
   >
     <form class="" method="post" action="{% url 'login' %}">
       {% csrf_token %}
@@ -39,23 +53,22 @@
       </table>
       <input
         autocomplete="off"
-        class="bg-red-800 text-center w-full mx-auto border border-white text-lg rounded-xl cursor-pointer hover:bg-gray-800 duration-300 ease-in-out transition-colors text-white px-5 my-3 p-1"
+        class="bg-red-800 text-center w-full mx-auto text-lg shadow rounded-xl cursor-pointer hover:bg-gray-800 duration-300 ease-in-out transition-colors text-white px-5 my-3 p-1"
         type="submit"
         value="Login"
       />
       <input type="hidden" name="next" value="{{ next }}" />
     </form>
-    {# Assumes you setup the password_reset view in your URLconf #}
     <p>
       <a
-        class="text-red-500 text-underline px-3 mt-9 p-1"
+        class="text-gray-100 text-underline px-3 mt-9 p-1"
         href="{% url 'password_reset' %}"
         >Lost password ?</a
       >
     </p>
     <p class="mt-4">
       <a
-        class="text-red-500 text-underline px-3 p-1"
+        class="text-gray-100 text-underline px-3 p-1"
         href="{% url 'register' %}"
         >Register here</a
       >
