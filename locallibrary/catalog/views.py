@@ -57,6 +57,7 @@ class BrewDetailView(DetailView):
     """View for displaying details of a specific brew"""
     model = BrewPost
     template_name = 'catalog/brew_detail.html'
+    context_object_name = 'brew'
 
 class BrewCreateView(LoginRequiredMixin, CreateView):
     """View for creating a new brew post"""
