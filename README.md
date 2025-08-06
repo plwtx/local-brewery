@@ -1,33 +1,8 @@
 ## Len's Local Brewery
 
-You can share different brews of **Coffee**, **Tea** and **Beer**. The brewes can be viewed by unauthenticated users.
+You can share different brews of **Coffee**, **Tea** and **Beer**. The brewes can be viewed by unauthenticated users. Create an account and share your brew with us!
 
-Create an account and share your brew with us!
-
-\*The project is only done for the purpose of learning django and is not intended for public use.
-
-### Task:
-
-```
-### Intermediate level (4)
-
-- 3–4 data models:
-- at least two many-to-one relationships
-- User authentication:
-- Registration, login, and logout
-- The ability to add and edit data is only available after logging in
-- Aesthetic HTML templates, with simple CSS styles
-- Routing consistent with the application logic
-- Admin panel configured for all models
-
-#### 6–7 views, including:
-- List of objects of the main model (short table of contents)
-- Details of a single object
-- Adding a new object (form)
-- Editing an existing object (form)
-- Views supporting login and registration
-
-```
+###### \*The project is only done for the purpose of learning django and is not intended for public use.
 
 ### Features and Structure
 
